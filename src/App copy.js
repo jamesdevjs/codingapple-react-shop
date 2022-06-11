@@ -6,18 +6,12 @@ import { Button, Container, Navbar, Nav } from "react-bootstrap";
 import bg from "./img/bg.png";
 import data from "./data";
 import { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
   let [shoes, setShoes] = useState(data);
   console.log(shoes);
   return (
     <div className="App">
-      <Routes>
-        <Route path="/detail" element={<div>상세페이지</div>}></Route>
-        <Route path="/about" element={<div>About</div>}></Route>
-      </Routes>
-
       <Navbar bg="light" variant="light">
         <Container>
           <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
@@ -33,25 +27,30 @@ function App() {
       ></div>
       <div className="container">
         <div className="row">
-          {shoes.map((a, i) => {
-            return <Card shoe={a} i={i + 1}></Card>;
-          })}
+          <div className="col-md-4">
+            <img src={process.env.PUBLIC_URL + "/shoes1.jpg"} width="80%"></img>
+            <h4>{shoes[0].title}</h4>
+            <p>{shoes[0].content}</p>
+            <p>{shoes[0].price}</p>
+          </div>
+          <div className="col-md-4">
+            <img
+              src="https://codingapple1.github.io/shop/shoes2.jpg"
+              width="80%"
+            ></img>
+            <h4>상품명</h4>
+            <p>상품설명</p>
+          </div>
+          <div className="col-md-4">
+            <img
+              src="https://codingapple1.github.io/shop/shoes3.jpg"
+              width="80%"
+            ></img>
+            <h4>상품명</h4>
+            <p>상품설명</p>
+          </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-function Card(props) {
-  return (
-    <div className="col-md-4">
-      <img
-        src={"https://codingapple1.github.io/shop/shoes" + props.i + ".jpg"}
-        width="80%"
-      ></img>
-      <h4>{props.shoe.title}</h4>
-      <p>{props.shoe.content}</p>
-      <p>{props.shoe.price}</p>
     </div>
   );
 }
